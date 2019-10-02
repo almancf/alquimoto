@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alquiler de Motos</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script>
+        let precio = 40;
+        let edad = window.prompt('¿Cuantos años tienes?');
+        if (edad >= 18) {
+            let carnet = window.prompt('¿tienes carnet de conducir?');
+            if (carnet.toLowerCase() === 'si') {
+                let lugar = window.prompt('¿Donde quieres alquilar?');
+                if (lugar.toLowerCase() === 'bilbao' || lugar.toLowerCase() === 'madrid' || lugar.toLowerCase() === 'barcelona' || lugar.toLowerCase() === 'santander') {
+                    let nombre = window.prompt('¿Como te llamas?');
+                    let dni = window.prompt('¿Indica tu DNI?');
+                    let telefono = window.prompt('¿Pon tu telefono?');
+                    let cp = window.prompt('¿Cual es tu CP?');
+                    let dia = parseInt(window.prompt('¿Cuantos días quieres alquilar?'));
+                    if (dia > 0 && !isNaN(dia)) {
+                        if (dia < 7) {
+                            let coste = precio * dia;
+                            document.write(`<p>Cliente con nombre ${nombre} y dni ${dni}, de ${edad} años, con carnet de conducir, vas a recoger la moto en ${lugar} y la alquilas durante ${dia} dias, por un coste de ${coste} €<p>`);
+                            if (coste <= 100) {
+                                document.write(`
+                                <div style="background-color: green;width: ${coste}px; height: 10px">
+                                </div>
+                                `);
+                            } else if (coste <= 200) {
+                                document.write(`
+                                <div style="background-color: yellow;width: ${coste}px; height: 10px">
+                                </div>
+                                `);
+                            } else if (coste > 200) {
+                                document.write(`
+                                <div style="background-color: red;width: ${coste}px; height: 10px">
+                                </div>
+                                `);
+                            }
+                        } else {
+                            let coste = precio * dia;
+                            let semana = Math.floor(dia / 7);
+                            document.write(`<p>Cliente con nombre ${nombre} y dni ${dni}, de ${edad} años, con carnet de conducir, vas a recoger la moto en ${lugar} y la alquilas durante  ${semana} semana(s) y ${dia % 7} dia(s) por un coste de ${coste} €</p>`);
+                            if (coste > 200) {
+                                document.write(`
+                                <div style="background-color: red;width: ${coste}px; height: 10px">
+                                </div>
+                                `);
+                            }
+                        }
+
+                    } else {
+                        document.write(`<p>No es posible el alquiler con la opcion seleccionada</p>`);
+                    }
+                } else {
+                    document.write(`<p>El lugar seleccionado no esta disponible para alquilar</p>`);
+                }
+
+
+            } else {
+                document.write(`<p>No se te puede alquilar sin carnet</p>`);
+            }
+        } else {
+            document.write(`<p>no tienes edad para poder conducir</p>`);
+        }
+
+    </script>
+</body>
+
+</html>
